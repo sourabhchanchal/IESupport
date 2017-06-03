@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+        <script src="/itnaeasy/test/test_files/airtable.browser.js?n=1"></script>
+		<script src="/itnaeasy/test/test_files/airtableTest.js?n=1"></script>
+    </head>
+    <body>
+		<table align="center" border="2">
+			<tr>
+				<td>
+					<h2>Moble Number : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="mobileNumber" id="mobileNumber" onblur="" value="" />
+					<input type="hidden" name="referID" id="referID" value="" />
+					<button id='readRecords' onclick="claerRecords();readRecords();">Search</button>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h2>Name : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="clientName" id="clientName" size="50" value="" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h2>Security Question 1 : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="question1" id="question1"  size="50" value="" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h2>Answer 1 : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="answer1" id="answer1"  size="50" value="" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h2>Security Question 2 : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="question2" id="question2"  size="50" value="" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h2>Answer 2 : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="answer2" id="answer2"  size="50" value="" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h2>Minutes Remaining : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="remainsTime" id="remainsTime"  size="50" value="" />
+				</td>
+			</tr>
+			
+			<tr id="displaySessionTime" colspan="2">
+				<td colspan="4">
+				<table><tr>
+				<td>
+					<h2>Start Time : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="startTime" id="startTime"  size="20" value="" />
+					<button id='startTimeButton' onclick="startTime('startTime');">Start Session</button>
+				</td>
+			
+				<td>
+					<h2>End Time : </h2>
+				</td>
+				<td>
+					<input type="textbox" name="endTime" id="endTime"  size="20" value="" />
+					<button id='endTimeButton' onclick="startTime('endTime');">End Session</button>
+				</td>
+				</tr></table>
+				</td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td colspan="2">
+					<center><button id='submitSession' onclick="submitSession();">Submit Session Details</button></center>
+				</td>
+			</tr>
+		</table>
+		
+		
+		
+    </body>
+</html>
