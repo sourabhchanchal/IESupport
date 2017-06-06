@@ -77,6 +77,8 @@ function submitSession(){
 		return false;
 	}
 
+	var notes = document.getElementById("sessionNotes").value;
+	
 	//return false;
 	
 	base('Minutes Calculation').create({
@@ -85,7 +87,8 @@ function submitSession(){
 		customerName
 	],
 	"Call Start Time": callStart,
-	"Call End Time": callEnd
+	"Call End Time": callEnd,
+	"Notes" : notes
 	}, function(err, record) {
 		if (err) { console.error(err); return; }
 		console.log(record.getId());
@@ -287,4 +290,60 @@ function startTime(id) {
 function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
+}
+
+function readRecordsNew(){
+	
+	var Airtable = require('airtable');
+	var base = new Airtable({apiKey: 'keyCMvZLwfukgJcLm'}).base('apperZh8Z4nPnCdER');
+	var recordID = "";
+	//alert(document.getElementById("mobileNumber").value);
+	var flag = "K";
+	
+	base('Minutes Calculation').select({
+		// Selecting the first 3 records in Grid view:
+		//maxRecords: 10,
+		view: "Grid View",
+	}).eachPage(function page(records, fetchNextPage) {
+		// This function (`page`) will get called for each page of records.
+	
+		records.forEach(function(record) {
+			console.log('Retrieved', record.get('Customer Name'));
+			//alert("record : "+record.get('Mobile Number'));
+			if(flag != "Y")
+				flag = "N";
+			
+			//if(document.getElementById("mobileNumber")){
+			//	if(document.getElementById("mobileNumber").value == record.get('Mobile Number')){
+					//alert("record : "+record.get('Mobile Number'));
+					//alert(" S. No.   : "+record.get('Customer Name'));
+					console.log(record.get('Customer Name'));
+					console.log(record.get('Call Date'));
+					console.log(record.get('Notes'));
+					//document.getElementById("question2").value = record.get('Security Question 2');
+					//document.getElementById("answer2").value = record.get('Answer of Security Question 2:');
+					//document.getElementById("remainsTime").value = record.get('Minutes Remaining');
+					//document.getElementById("referID").value = record.getId();
+					//alert(" S. No.   : "+record.get('Minutes Remaining'));
+					recordID = record.getId();
+					flag = "Y";
+			//	}
+			//}
+		});
+
+		// To fetch the next page of records, call `fetchNextPage`.
+		// If there are more records, `page` will get called again.
+		// If there are no more records, `done` will get called.
+		fetchNextPage();
+
+	}, function done(err) {
+		//alert("done : "+recordID);
+		//return recordID;
+		if (err) { console.error(err); 
+		alert("Unable to connect to database");
+		return; }
+	});
+	
+	if(flag == "N")
+		alert("Record not found in database");
 }
