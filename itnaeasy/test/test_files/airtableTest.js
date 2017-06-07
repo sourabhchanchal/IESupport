@@ -76,7 +76,8 @@ function submitSession(){
 		alert("End the session of "+document.getElementById("clientName").value+" first");
 		return false;
 	}
-
+	
+	var notes = document.getElementById("sessionNotes").value;
 	//return false;
 	
 	base('Minutes Calculation').create({
@@ -85,7 +86,8 @@ function submitSession(){
 		customerName
 	],
 	"Call Start Time": callStart,
-	"Call End Time": callEnd
+	"Call End Time": callEnd,
+	"Notes" : notes
 	}, function(err, record) {
 		if (err) { console.error(err); return; }
 		console.log(record.getId());
